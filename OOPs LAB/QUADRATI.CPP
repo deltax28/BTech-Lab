@@ -1,0 +1,33 @@
+#include<iostream.h>
+#include<conio.h>
+#include<math.h>
+void main()
+{
+	float a,b,c,d,r1,r2,p,q;
+	clrscr();
+	cout<<"Enter a,b,c:";
+	cin>>a>>b>>c;
+	d=pow(b,2)-(4*a*c);
+	if(a==0)
+	{	cout<<"Not possible";
+		getch();
+	 }
+	if(d>0)
+	{       r1=((-b)+sqrt(d))/(2*a);
+		r2=((-b)-sqrt(d))/(2*a);
+		cout<<"Roots are real:"<<r1<<" and "<<r2;
+	}
+	else if(d==0)
+	{	p=(-b)/(2*a);
+		cout<<"Roots are real and equal:"<<p;
+	}
+	else
+	{       d*=-1;
+		p=(-b)/(2*a);
+		q=sqrt(d)/(2*a);
+		cout<<"Roots are complex:"
+		    <<p<<"+i"<<q<<" and "
+		    <<p<<"-i"<<q;
+	}
+	getch();
+}

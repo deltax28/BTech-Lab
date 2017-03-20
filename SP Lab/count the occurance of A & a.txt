@@ -1,0 +1,80 @@
+data segment
+    string db 'AaaaAAa','$'
+    s_size dw $-string
+    check1 db 'a'
+    check2 db 'A'
+    msg1 db 'Total a occurances : $'
+    msg2 db 0ah, 0dh, 'Total A occurances : $'
+    count_a dw ?
+    count_aa dw ?
+    count dw 2 dup ('$')
+data ends
+
+code segment
+    assume cs:code, ds:data
+begin:
+    mov ax, data
+    mov ds, ax
+    
+    lea si, string
+    sub s_size, 01h
+    mov cx, s_size
+
+        
+counter:
+    mov al, [si]
+
+    cmp al, check1
+    je check_1
+
+    cmp al, check2
+    je check_2
+
+    inc si
+    dec cx
+    jnz counter
+    jmp exit    
+
+check_1:
+    add count_a, 01h
+    inc si
+    dec cx
+    jnz counter
+    jmp exit
+
+check_2:
+    add count_aa, 01h
+    inc si
+    dec cx
+    jnz counter        
+
+exit:
+    mov ah, 09h
+    lea dx, msg1
+    int 21h
+
+mov ax, count_a
+or ax, 30h
+mov count, ax
+
+    mov ah, 09h
+    lea dx, count
+    int 21h
+
+    mov ah, 09h
+    lea dx, msg2
+    int 21h
+
+mov ax, count_aa
+or ax, 30h
+mov count, ax
+
+    mov ah, 09h
+    lea dx, count
+    int 21h
+
+    mov ax, 4c00h
+    int 21h
+
+code ends
+end begin

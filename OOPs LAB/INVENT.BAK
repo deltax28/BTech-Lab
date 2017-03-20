@@ -1,0 +1,8 @@
+//Inventory Management system
+#include<iostream.h>
+#include<conio.h>
+
+class shop
+{
+	int prnm;
+	float price[15],stock[20

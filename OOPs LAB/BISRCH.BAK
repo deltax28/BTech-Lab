@@ -1,0 +1,46 @@
+//Binary Search
+#include<iostream.h>
+#include<conio.h>
+
+void main()
+{
+	clrscr();
+	int a[50],n,i,j,t,f,l,m,s,flag=0;
+	cout<<"Enter no of elements:";
+	cin>>n;
+	cout<<"Enter elements";
+	for(i=0;i<n;++i)
+		cin>>a[i];
+	for(i=0;i<n;++i)
+	{	for(j=0;j<n-i;j++)
+		{
+			if(a[j]>a[j+1])
+			{ 	t=a[j];
+				a[j]=a[j+1];
+				a[j+1]=t;
+			}
+		}
+	}
+	cout<<"Sorted array is:";
+	for(i=0;i<n;++i)
+		cout<<a[i]<<" ";
+	cout<<"Enter elemnt to be searched for:";
+	cin>>s;
+	f=0,l=n-1;
+	while(f<=l)
+	{	m=(f+l)/2;
+		if(a[m]==s)
+		{	cout<<"\nFound at position:"<<m+1;
+			flag=1;
+			break;
+		}
+		else if(a[m]<s)
+			f=m+1;
+		else
+			l=m-1;
+	}
+	if(flag==0)
+	{ 	cout<<"\nNot Found";
+	}
+	getch();
+}
